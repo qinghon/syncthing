@@ -3,9 +3,8 @@ name: buildx
 
 on:
   pull_request:
-    branches: master
-  push:
     branches: main
+  push:
     tags:
       - v*
 
@@ -20,7 +19,7 @@ jobs:
         name: Prepare
         id: prepare
         run: |
-          DOCKER_IMAGE=qinghon/syncthing
+          DOCKER_IMAGE=${GITHUB_REPOSITORY}
           DOCKER_PLATFORMS=linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386
           VERSION=edge
 
