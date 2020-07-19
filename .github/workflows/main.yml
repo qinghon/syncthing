@@ -45,7 +45,7 @@ jobs:
       -
         name: Docker Buildx (build)
         run: |
-          printf '${{ steps.prepare.outputs.buildx_args }}'|awk '{print $4}'|awk -F= '{print $2}' |tee RELEASE 
+          echo '${{ steps.prepare.outputs.buildx_args }}'|awk '{print $4}'|awk -F= '{print $2}' |tee RELEASE 
           [[ -z "$(cat RELEASE)" ]] && exit 1
           docker buildx build --output "type=image,push=false" ${{ steps.prepare.outputs.buildx_args }}
       -
