@@ -45,7 +45,7 @@ jobs:
       -
         name: Docker Buildx (build)
         run: |
-          printf "$VERSION" > RELEASE
+          printf "${{ steps.prepare.outputs.buildx_args }}"|awk '{print $4}'|awk -F= '{print $2}' > RELEASE
           docker buildx build --output "type=image,push=false" ${{ steps.prepare.outputs.buildx_args }}
       -
         name: Docker Login
